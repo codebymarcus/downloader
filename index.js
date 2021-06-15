@@ -31,10 +31,19 @@ const extractFileName = (file) => {
   return fileName;
 };
 
+/**
+ *
+ *
+ * @param {*} [file=string]
+ * @param {*} [dest=null]
+ * @param {*} [opts={}]
+ * @param {*} { onExtractProgress, onDownloadProgress }
+ * @return {*}
+ */
 const download = async (
   file,
   dest = null,
-  opts,
+  opts = {},
   { onExtractProgress, onDownloadProgress }
 ) => {
   const destination = dest || extractFileName(file);
@@ -63,23 +72,22 @@ const download = async (
   }
 };
 
-(async () => {
-  const downloadable =
-    "https://internal-kubli-files.appshouse.com/browsers/linux-browser-chrome-v888113.zip";
+// (async () => {
+//   const downloadable = "https://url/to/your-file.zip";
 
-  const d = await download(
-    downloadable,
-    null,
-    {
-      extract: true,
-      extractFilePath: "./downloads",
-    },
-    {
-      onDownloadProgress: (file) => {
-        console.log(file.percent * 100);
-      },
-      onExtractProgress: (file) => console.log("extracting", file.path),
-    }
-  );
-  console.log("done", d);
-})();
+//   const d = await download(
+//     downloadable,
+//     null,
+//     {
+//       extract: true,
+//       extractFilePath: "./downloads",
+//     },
+//     {
+//       onDownloadProgress: (file) => {
+//         console.log(file.percent * 100);
+//       },
+//       onExtractProgress: (file) => console.log("extracting", file.path),
+//     }
+//   );
+//   console.log("done", d);
+// })();
